@@ -5,7 +5,7 @@
     ### Types of EC
     1. **Global Execution Context (GEC)**
     - **Created when:** The JS engine first loads the script.
-    - **Scope:** Represents the global scope. ( can be accessed any where in the code inside other fn's or loops)
+    - **Scope:** Represents the global scope. (can be accessed any where in the code inside other fn's or loops)
     - **Note:** Only one GEC exists per program.
 
     2. **Function Execution Context (FEC)**
