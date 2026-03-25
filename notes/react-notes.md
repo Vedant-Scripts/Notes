@@ -59,7 +59,14 @@
         - `[val]`: Runs on mount + whenever `val` **changes**.
         - `undefined`: Runs after **every** render.
       - **Cleanup**: Return a function to prevent memory leaks (e.g., `return () => clearInterval(id)`).
-  
+   3. **useRef**
+      - **Purpose**: Persistent storage that **does NOT** trigger a re-render when changed.
+      - **Usage**: Access via the `.current` property.
+      - **Common Case**: Direct DOM access (focusing an input) or storing "mutable" values like timer IDs.
+   4. **useContext**
+      - **Purpose**: Accesses global data (Context) without "prop drilling."
+      - **Requirement**: The component must be wrapped in a `<MyContext.Provider>` higher up the tree.
+      - **Use Case**: Theme toggles, User authentication, or Language settings.
 6. **React Routing**
    1. **BrowserRouter**
       - BrowserRouter Comp -> React router -> that enables client side routing in react app -> USING Browser's built-in *History API* 
