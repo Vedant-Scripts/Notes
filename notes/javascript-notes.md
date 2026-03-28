@@ -175,12 +175,6 @@
 4. **Detect:** If a previously used (rotated) token is presented, trigger **Reuse Detection**.
 5. **Revoke:** On reuse detection, delete the entire session to block the attacker.
 
-1.  **Lookup:** Retrieve the session from DB using `sessionId`.
-2.  **Verify:** Hash the incoming raw token and compare it to the stored `refreshTokenHash`.
-3.  **Rotate:** Issue a brand-new token pair and update the DB with the new hash.
-4.  **Detect:** If a previously used (rotated) token is presented, trigger **Reuse Detection**.
-5.  **Revoke:** On reuse detection, delete the entire session to block the attacker.
-
 ### ✅ Quick Checklist
 - **DO:** Rotate tokens on every single refresh.
 - **DO:** Use short-lived access tokens to limit exposure.
