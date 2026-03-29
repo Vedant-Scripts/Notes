@@ -1,19 +1,19 @@
 1. **Vite**
-   - Vite is a frontend build tool + development server
+   - Vite is a frontend build tool + development server.
    - helps in - starting project, running dev server, bundle code for production, reloads changes super fast.
-   - It helps in preparing things
+   - It helps in preparing things.
    
 2. **React Routing**
    1. **BrowserRouter**
       - BrowserRouter Comp -> React router -> that enables client side routing in react app -> USING Browser's built-in *History API* 
        - *History Api* is js feature in browser that enables 1. change Url without refreshing 2. keep track of naviagtion.
-      - enables routing
-      - prevents full page reload
+      - enables routing.
+      - prevents full page reload.
 
    2. **Hash Router**
       - In Hash router -> browser + react manages the routing and rendering the server does not have to do anything.
-      - Hash router is also the part of react router
-      - *Usefull* => when server can't be configured, so it can work independently ( github pages, static file hosting), Browser router needs cooperation (server)
+      - Hash router is also the part of react router.
+      - *Usefull* => when server can't be configured, so it can work independently ( github pages, static file hosting), Browser router needs cooperation (server).
       - *limitations* => worse for SEO
       ```js
       /*
@@ -25,8 +25,8 @@
       ```
     3. **Memory Router**
        - A router that does NOT use the browser URL at all.
-       - stores route in memory
-       - usually works for non-browser environment ( react native, embedded apps etc)
+       - stores route in memory.
+       - usually works for non-browser environment ( react native, embedded apps etc).
        - All in app functionalities would happen( coz internally routes is changing in memory thats why), but anything that depends on browser URL/history(api) does not.
 
 3. **CSR & SSR**
