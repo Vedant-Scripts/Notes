@@ -56,3 +56,35 @@
 
 5. *Parent Component* owns state + logic,
    *Child Component* receives via props
+
+6. *Link* : just like <a> tag it acts a hyperlink type thingy
+   -> *NavLink*: it is a wrapper around Link, more like a smarter version of Link.
+      - it knows the *active route*, which helps in styling the active route automatically.
+      for eg 
+      ```jsx
+         <NavLink 
+         to="/users" 
+         style={({ isActive }) => ({
+            color: isActive ? 'red' : 'black'
+         })}
+         >
+         Users
+         </NavLink>
+      ```
+7. `const Layout = ({ children }: { children: React.ReactNode })` => React.ReactNode = anything React can render
+   - “children can be anything React is capable of rendering”
+   
+8. **CSS**
+   1. *flexbox* : turns a container into flex container
+         ```css
+            <div style={{ display: 'flex'}}>
+               <div style={{ width: '200px', borderRight: '1px solid gray' }}>Sidebar</div>
+               <div style={{ padding: '20px', flex: 1 }}>MainContent</div>
+            </div>
+            <!-- Its children become flexible items laid out: [ Sidebar ][ Main Content ] -->
+         ```
+      - Its children become flexible items laid out:
+        - in a row (default)
+        - or column (if specified)
+      - *flex: 1*: "Take all remaining space available". (sidebar is taking fixed 200, so the other maincontent div will adjust in the remaining space)
+        - this only works when the parent has `display="flex"`
