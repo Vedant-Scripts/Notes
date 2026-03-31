@@ -1,53 +1,86 @@
-1. **JS Closures**
-    A closure is a function that remembers its outer variables even after the outer function has finished executing.
-    
-    - **Key Takeaway**: Closure is not about access, its about "retaining access of the variable even after execution ended"
-    - Because the inner fn -> referencing the variable and is in use. so the variable, is in memory even after the outer fn is done executing.
+1. **Execution Context Javascript**
+   - **Definition:** The environment where JavaScript code is evaluated and executed. It acts as a "container" for the code currently running.
+   - **How it Works:** Before execution, the engine **parses** the code to allocate memory for variables and functions (Creation Phase), then runs the code line-by-line (Execution Phase).
+
+    ### Types of EC
+    1. **Global Execution Context (GEC)**
+    - **Created when:** The JS engine first loads your script.
+    - **Scope:** Represents the global scope. ( can be accessed any where in the code inside other fn's or loops)
+    - **Note:** Only one GEC exists per program.
+
+    1. **Function Execution Context (FEC)**
+    - **Created when:** A function is **invoked** (called).
+    - **Scope:** Represents that specific function's local scope.
+    - **Note:** Each function call gets its own unique EC.
+  
+2. ### The Call Stack
+   - **Role:** A mechanism to track the order of function execution. It remembers "where we are" in the code.
+   - **Adding (Push):** When a function is called, it’s added to the top of the stack.
+   - **Nesting:** If a function calls another function, the new one is added further up. The engine pauses the current function to run the new one.
+   - **Removing (Pop):** When a function finishes, it is removed from the stack, and execution resumes exactly where it left off in the previous function.
+   - **Error:** If too many functions are added without finishing (like infinite recursion), it triggers a **"Stack Overflow."**
+  
+3. ### JS Execution: Line-by-Line
+   - **Single-Threaded:** JS can only execute **one** command at a time in a single sequence.
+   - **Two-Pass System:** It doesn't just "start" at line 1. It follows a strict two-step process:
+
+   1. **Memory Phase (Creation):** 
+      - Scans the entire file **before** running.
+      - Allocates memory for variables and functions (**Hoisting**).
+      - `var` is set to `undefined`; `functions` are stored in full.
+
+   2. **Execution Phase (Code):**
+      - Runs code top-to-bottom.
+      - Assigns actual values to variables.
+      - Executes function calls by pushing them to the **Call Stack**.
+
+   - **Synchronous:** Each line must finish before the next one starts (unless it's Asynchronous code like `setTimeout`).
+  
+4. **JS Closures**
+    - **Definition:** A closure is a function that remembers its outer variables even after the outer function has finished executing.
+    - **The "Why":** Normally, a function's variables are deleted when it finishes (popped from the stack). A **Closure** prevents this because the inner function still holds a **reference** to those variables. -> variable is in use and is in memory even after the outer fn is done executing.
     
     ```javascript
-    const outerfn = () => {
-    let count = 0;
-    return () => console.log('count:', ++count);
+    const createCounter  = () => {
+    let count = 0; // This should die when the function ends...
+    return () => console.log('count:', ++count); // ...but this inner function keeps it alive!
 
     }
-    const innerfn = outerfn(); // outer finished here
-    innerfn(); // 1
-    innerfn(); // 2  (still the variable is kept in memory since it is used/referenced by inner fn)
+    const innerfn = createCounter (); // outer finished here
+    counter(); // 1
+    counter(); // 2  (still the variable is kept in memory since it is used/referenced by inner fn)
     ```
 
-2. **Var, const, let**
-   - var is function scoped, can be reassigned, redeclared.
-   - let and const block scope, let can be reassigned but not redeclare. Const cant do any
-   - hoisting means - js knows about the varibale declaration before the execution 
-   - var -> initialized with undefined (will give undefined till declaration line arrives )
-   - let and const -> not initialized (temporal dead zone).( : Reference Error wont run the variable until the vaible declaration has arrived)
+5. **Var, const, let**
+    - **Scope:**
+     - `var`: **Function-scoped**. Accessible anywhere within the function it's defined in.
+     - `let` & `const`: **Block-scoped**. Only accessible within the `{ }` where they are declared.
+
+   - **Hoisting & Initialization:**
+     - **All are hoisted** (JS knows they exist before execution).
+     - `var`: Initialized with `undefined`. You can use it before its declaration line (returns `undefined`).
+     - `let` & `const`: Not initialized. They stay in the **Temporal Dead Zone (TDZ)**. Accessing them before declaration causes a `ReferenceError`.
+
+   - **Reassignment & Redeclared:**
+     - `var`: Can be reassigned **and** redeclared.
+     - `let`: Can be reassigned, but **not** redeclared in the same scope.
+     - `const`: Cannot be reassigned **or** redeclared (must be initialized immediately).
+
     ```js
-    function () => {
-        console.log(a); // undefined  => HOISTING and intialized 
-        // var
+    function example() {
+    console.log(a); // undefined (Hoisted & Initialized)
+    var a = 10;
+    var a = 5;      // Redeclare OK
+
         if (true) {
-            var a = 10;
+            // console.log(b); // ReferenceError (TDZ - Hoisted but NOT initialized)
+            let b = 20;
+            // let b = 30;  // SyntaxError: Already declared
+            b = 40;         // Reassign OK
+            
+            const c = 50;
+            // c = 60;      // TypeError: Assignment to constant
         }
-        console.log(a); // can be accessed
-        a = 8; // can be re assigned 
-        var a = 5; //can be redeclared
-
-        // let and const
-        if (false) {
-            console.log(y);  // hoisted but not initialized  (REFERENCE ERROR)
-
-            let y = 7;
-            let y = 9; // error
-            y = 8; // can be reassigned 
-            const z = 10;
-            z = 10; // error
-            const z = 5; // error
-
-        }
-        console.log(y); // can't be accessed block
-        console.log(z);// can't be accessed since block
+    // console.log(b); // ReferenceError: b is block-scoped to the 'if'
     }
-
     ```
-
-3. 
