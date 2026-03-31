@@ -72,4 +72,27 @@
             //  complexity : O(n), O(n) 
             // intution = without map its mostly nested check "O(n square)"
         ```
-   3.  
+   3. Two Pointers
+       - Use two indices instead of one to reduce complexity (left and right)
+       - when to use: sorted array, pairs/triplets, opposite ends processing
+       - ```js
+            let left = 0;
+            let right = arr.length - 1;
+
+            while (left < right) {
+            const sum = arr[left] + arr[right];
+
+            if (sum === target) return true;
+            else if (sum < target) left++;
+            else right--;
+            }
+            // comp : Time → O(n) Space → O(1)
+         ```
+   4. Sliding Window
+      - Maintain a window (subarray / substring) and move it
+          - expand window (right++)
+          - shrink window (left++)
+      - When to use :
+          -  Subarray / substring, 
+          -  “longest”, “smallest”, “count of…”
+          -  contiguous elements
