@@ -84,3 +84,24 @@
     // console.log(b); // ReferenceError: b is block-scoped to the 'if'
     }
     ```
+6. ### Lexical Scope & Scope Chain
+   - **Lexical Scope:** Scope is determined by where a function is **written**, not called.
+   - **Lexical Environment:** Local Memory (where its own variables and functions live) + Reference to Parent Scope ( a pointer to the lexical env of is parents scope).
+   - **Scope Chain:** The process of searching for a variable by jumping from the local scope to parent scopes, all the way to the Global scope. (where the parent reference is null) If still not found, it throws a *ReferenceError*
+   - **One-Way Street:** Inner functions can see "out" to parents, but parents cannot see "in" to children.
+
+7. ### The "this" Keyword
+   - **Definition:** A reference to the current execution context (the "owner" of the executing code).
+   - **Rule of Thumb:** Look to the **left of the dot** at the call site. If it's `user.greet()`, then `this` is `user`.
+   - **Arrow Functions:** Special exception. They don't have their own `this`; they "look up" to their parent's `this`.
+   - **Strict Mode:** In strict mode, `this` in a regular function defaults to `undefined` instead of the global `window`.
+     - ### **The `this` Keyword (Call-site Rules)**
+     - **Simple Call:** `func()` → `window` (or `undefined` in strict mode).
+     - **Method Call:** `obj.method()` → the **object** before the dot.
+     - **Constructor:** `new Func()` → the **newly created instance**.
+     - **Arrow Fn:** `() => {}` → **Lexical** (inherits from parent scope).
+
+8. ### **Arrow vs. Normal Functions**
+- **`this` Binding:** Normal fns have **Dynamic** `this` (call-site); Arrow fns have **Lexical** `this` (inherits from parent).
+- **Constructors:** Normal fns can be called with `new`; Arrow fns **cannot** (no `prototype`).
+- **Arguments:** Normal fns have an built-in `arguments` object; Arrow fns **do not** (use `...args` instead).
