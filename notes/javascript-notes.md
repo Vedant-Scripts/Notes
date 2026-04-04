@@ -102,6 +102,26 @@
      - **Arrow Fn:** `() => {}` → **Lexical** (inherits from parent scope).
 
 8. ### **Arrow vs. Normal Functions**
-- **`this` Binding:** Normal fns have **Dynamic** `this` (call-site); Arrow fns have **Lexical** `this` (inherits from parent).
-- **Constructors:** Normal fns can be called with `new`; Arrow fns **cannot** (no `prototype`).
-- **Arguments:** Normal fns have an built-in `arguments` object; Arrow fns **do not** (use `...args` instead).
+   - **`this` Binding:** Normal fns have **Dynamic** `this` (call-site); Arrow fns have **Lexical** `this` (inherits from parent).
+   - **Constructors:** Normal fns can be called with `new`; Arrow fns **cannot** (no `prototype`).
+   - **Arguments:** Normal fns have an built-in `arguments` object; Arrow fns **do not** (use `...args` instead).
+
+9. **The Event Loop**
+   - **Definition:** A mechanism that allows **non-blocking, asynchronous** operations in a single-threaded environment.
+   - **Role:** It monitors the **Call Stack** and coordinates when tasks from the queues move to the stack.
+
+      #### **Key Components**
+      1. **Call Stack:** Executes synchronous code (LIFO).
+      2. **Web/Node APIs:** Background environments that handle "slow" tasks (e.g., `setTimeout`, `fetch`, DOM events).
+      3. **Microtask Queue:** **High-Priority** tasks. Holds `Promises (.then/.catch)` and `async/await`.
+      4. **Macrotask Queue:** **Lower-Priority** tasks. Holds `setTimeout`, `setInterval`, and `I/O`.
+
+      #### **The Execution Cycle (Priority)**
+      5. **Execute Synchronous Code:** Runs everything in the Call Stack until empty.
+      6. **Clear Microtasks:** Once the stack is empty, the loop executes **all** pending Microtasks.
+      7. **Execute One Macrotask:** The loop picks **exactly one** task from the Macrotask Queue and pushes it to the stack.
+      8. **Render:** (Browser only) The UI may update before the cycle restarts.
+
+      #### **Interview Summary**
+      - **Microtasks > Macrotasks:** Promises always resolve before the next `setTimeout` runs.
+      - **Blocking:** If the Call Stack is busy with a heavy loop, the Event Loop cannot move tasks from the queues, "freezing" the app.
