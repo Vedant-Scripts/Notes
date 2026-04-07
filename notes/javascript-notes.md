@@ -1,4 +1,4 @@
-1. **Execution Context Javascript**
+1. ### Execution Context Javascript
    - **Definition:** The environment where JavaScript code is evaluated and executed. It acts as a "container" for the code currently running.
    - **How it Works:** Before execution, the engine **parses** the code to allocate memory for variables and functions (Creation Phase), then runs the code line-by-line (Execution Phase).
 
