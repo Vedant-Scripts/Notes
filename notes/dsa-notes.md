@@ -75,6 +75,7 @@
    3. Two Pointers
        - Use two indices instead of one to reduce complexity (left and right)
        - when to use: sorted array, pairs/triplets, opposite ends processing
+       - You’re shrinking search space intelligently, not checking all pairs.
        - ```js
             let left = 0;
             let right = arr.length - 1;
@@ -92,7 +93,13 @@
       - Maintain a window (subarray / substring) and move it
           - expand window (right++)
           - shrink window (left++)
+            - questions :
+                - e.g fixed window max sum of size k
+                - e.g Variable window grows and shrinks based on condition : longest substring without repeating characters
       - When to use :
           -  Subarray / substring, 
           -  “longest”, “smallest”, “count of…”
           -  contiguous elements
+      - *Real world usecases* :
+          - last 100 messages, last 5 mins users 
+          - no repeating messages, no repeating chars, sum ≥ target
