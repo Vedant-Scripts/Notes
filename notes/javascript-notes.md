@@ -102,7 +102,7 @@
      - **Arrow Fn:** `() => {}` → **Lexical** (inherits from parent scope).
 
 8. ### **Arrow vs. Normal Functions**
-   - **`this` Binding:** Normal fns have **Dynamic** `this` (call-site); Arrow fns have **Lexical** `this` (inherits from parent).
+   - **`this` Binding:** Normal fns have **Dynamic** `this` (depends on call-site, not where it is written); Arrow fns have **Lexical** `this` (inherits from parent, depends on where it is written).
    - **Constructors:** Normal fns can be called with `new`; Arrow fns **cannot** (no `prototype`).
    - **Arguments:** Normal fns have an built-in `arguments` object; Arrow fns **do not** (use `...args` instead).
 
