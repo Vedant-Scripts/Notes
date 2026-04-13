@@ -8,7 +8,7 @@
     - **Scope:** Represents the global scope. ( can be accessed any where in the code inside other fn's or loops)
     - **Note:** Only one GEC exists per program.
 
-    1. **Function Execution Context (FEC)**
+    2. **Function Execution Context (FEC)**
     - **Created when:** A function is **invoked** (called).
     - **Scope:** Represents that specific function's local scope.
     - **Note:** Each function call gets its own unique EC.
