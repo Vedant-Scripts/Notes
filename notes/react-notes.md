@@ -2,6 +2,16 @@
    - Vite is a frontend build tool + development server.
    - helps in - starting project, running dev server, bundle code for production, reloads changes super fast.
    - It helps in preparing things.
+   - *vite.config.ts* defines how all that transformation happens
+       <!--    Your React + Tailwind code
+                     ↓
+               Vite reads config
+                     ↓
+               react() plugin → handles JSX
+               tailwindcss() plugin → generates CSS
+                     ↓
+               Final JS + CSS sent to browser
+      -->
    
 2. **React Routing**
    1. **BrowserRouter**
