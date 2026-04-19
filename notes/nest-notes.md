@@ -6,4 +6,3 @@ Questions :
 2. To speed up the development process (x20 times faster builds), you can use the SWC builder by passing the -b swc flag to the start script, as follows npm run start -- -b swc.  => Why use SWC ? What is it ?
 3. What is decorators ?
 4. Why is classes used ?
-5. 
