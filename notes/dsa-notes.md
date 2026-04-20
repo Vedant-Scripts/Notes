@@ -1,7 +1,7 @@
 *Thinking Pattern* :
 
-- brute force first" -> obvious way to solve
-- check input size" -> what is the n, (n=5, n=10000), n decides brute force acceptance or not
+- brute force first -> obvious way to solve
+- check input size -> what is the n, (n=5, n=10000), n decides brute force acceptance or not
 - improve with DS/pattern" -> Can i use a better data structure to reduce time
 
 - Questions for Intuition :
