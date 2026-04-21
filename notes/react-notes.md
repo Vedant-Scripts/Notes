@@ -48,11 +48,18 @@
 
 5. ### React Hooks
    1. **useState**
-   - **Purpose**: Adds local state ("memory") to functional components.
-   - **Syntax**: `const [state, setState] = useState(initialValue);`
-   - **Key Fact**: Updating state triggers a **re-render** to reflect changes in the UI.
-   - **Note**: Use the functional update `prev => prev + 1` if the new state depends on the old one.
-
+      - **Purpose**: Adds local state ("memory") to functional components.
+      - **Syntax**: `const [state, setState] = useState(initialValue);`
+      - **Key Fact**: Updating state triggers a **re-render** to reflect changes in the UI.
+      - **Note**: Use the functional update `prev => prev + 1` if the new state depends on the old one.
+   2. **useState**
+      - **Purpose**: Handles side effects (data fetching, subscriptions, manual DOM changes).
+      - **Dependency Array**:
+        - `[]`: Runs once on **mount** only.
+        - `[val]`: Runs on mount + whenever `val` **changes**.
+        - `undefined`: Runs after **every** render.
+      - **Cleanup**: Return a function to prevent memory leaks (e.g., `return () => clearInterval(id)`).
+  
 6. **React Routing**
    1. **BrowserRouter**
       - BrowserRouter Comp -> React router -> that enables client side routing in react app -> USING Browser's built-in *History API* 
@@ -104,7 +111,7 @@
          title={true}
       />
 
-9. *Parent Component* owns state + logic,
+9.  *Parent Component* owns state + logic,
    *Child Component* receives via props
 
 10. *Link* : just like <a> tag it acts a hyperlink type thingy
