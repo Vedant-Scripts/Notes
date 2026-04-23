@@ -67,6 +67,11 @@
       - **Purpose**: Accesses global data (Context) without "prop drilling."
       - **Requirement**: The component must be wrapped in a `<MyContext.Provider>` higher up the tree.
       - **Use Case**: Theme toggles, User authentication, or Language settings.
+   5. **useMemo** & **useCallback**
+      - **useMemo**: Caches the **result** of an expensive calculation.
+      - **useCallback**: Caches a **function definition** to prevent child re-renders.
+      - **Goal**: Performance optimization; only re-computes when dependencies change.
+
 6. **React Routing**
    1. **BrowserRouter**
       - BrowserRouter Comp -> React router -> that enables client side routing in react app -> USING Browser's built-in *History API* 
