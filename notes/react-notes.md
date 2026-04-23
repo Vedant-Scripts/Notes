@@ -1,4 +1,4 @@
-1. *Frontend Terminologies*
+1. ### **Frontend Terminologies**
    1. Navbar -> A navbar is just a menu of links that helps users move around your site. (Usually sits at the top)
       - Logo
       - Links (Home, About, Contact)
@@ -18,7 +18,7 @@
    [ Sidebar ] [ Main Content ]
    [ Footer ]
 
-2. **Vite**
+2. ### **Vite**
    - Vite is a frontend build tool + development server.
    - helps in - starting project, running dev server, bundle code for production, reloads changes super fast.
    - It helps in preparing things.
@@ -33,7 +33,7 @@
                Final JS + CSS sent to browser
       -->
 
-3. **React Mechanism**
+3. ### **React Mechanism**
    - Components: UI is broken into reusable, independent pieces.
    - JSX: Allows writing HTML-like code inside JavaScript for easier UI development..
    - Virtual DOM: A lightweight copy of the real DOM that tracks changes.
@@ -41,12 +41,12 @@
    - One-way Data Flow: Ensures predictable UI updates by passing data from parent to child via props.
    - State Management: React automatically re-renders components when their state changes.
 
-4. **React Components**
+4. ### **React Components**
    *In React we mainly have 2 Components :*
       1. *Functional Components*: Functional components are simply JavaScript functions. Initially, they were limited in terms of features like state and lifecycle methods. However, with the introduction of Hooks, functional components can now use state, manage side effects, and access other features that were once exclusive to class components.
       2. *Class Components*: Class components are more complex than functional components. They are able to manage state, handle lifecycle methods, and can also interact with other components. Class components can pass data between each other via props, similar to functional components
 
-5. ### React Hooks
+5. ### **React Hooks**
    1. **useState**
       - **Purpose**: Adds local state ("memory") to functional components.
       - **Syntax**: `const [state, setState] = useState(initialValue);`
@@ -71,8 +71,11 @@
       - **useMemo**: Caches the **result** of an expensive calculation.
       - **useCallback**: Caches a **function definition** to prevent child re-renders.
       - **Goal**: Performance optimization; only re-computes when dependencies change.
-
-6. **React Routing**
+   6. **Rules of Hooks**
+      - **Top Level Only**: Don't call Hooks inside loops, conditions, or nested functions.
+      - **React Functions Only**: Only call them from Functional Components or Custom Hooks.
+  
+6. ### **React Routing**
    1. **BrowserRouter**
       - BrowserRouter Comp -> React router -> that enables client side routing in react app -> USING Browser's built-in *History API* 
        - *History Api* is js feature in browser that enables 1. change Url without refreshing 2. keep track of naviagtion.
@@ -98,7 +101,7 @@
        - usually works for non-browser environment ( react native, embedded apps etc).
        - All in app functionalities would happen( coz internally routes is changing in memory thats why), but anything that depends on browser URL/history(api) does not.
 
-7. **CSR & SSR**
+7. ### **CSR & SSR**
    - *CSR* - in csr, server sends the code not UI, browser builds the UI.
        - Browser downloads and runs JS bundle, 
        - JS  executes the code. React renders the component in an empty DOM.
@@ -112,52 +115,47 @@
     - CASE 1: IF Frontend is Next and backend is somewhere, then frontend server would do api call to fetch data and build html
     - CASE 2: IF both frontend and backend are on Next. then ta direct db call or a internal api call
 
-8. *PROPS* : -> *read-only* arguments passed to react components
-   - In JSX, a prop without = means: **boolean true**
-   - ```js
-      <UserList
-         title
-      />
-      // The above and below are same
-      <UserList
-         title={true}
-      />
+8. ### **Props & State**
+   - **Props**: Read-only arguments passed from a parent to a child component.
+   - **Shorthand**: In JSX, a prop provided without a value defaults to `true`.
+   - **Example**:
+     ```js
+     // These two are identical:
+     <UserList title />
+     
+     <UserList title={true} />
+     ```
+   - **State**: Private data managed *within* the component that can change over time.
+   -  *Parent Component* owns state + logic, *Child Component* receives via props
 
-9.  *Parent Component* owns state + logic,
-   *Child Component* receives via props
-
-10. *Link* : just like <a> tag it acts a hyperlink type thingy
-   -> *NavLink*: it is a wrapper around Link, more like a smarter version of Link.
-      - it knows the *active route*, which helps in styling the active route automatically.
-      for eg 
-      ```jsx
-         <NavLink 
+9. ### **Navigation & Layout**
+   - **Link**: Acts like an `<a>` tag to navigate between routes without refreshing the page.
+   - **NavLink**: A "smarter" version of `Link` that knows if it is currently **active**.
+     - **Active Styling**: Useful for navbars to highlight the current page.
+     - **Example**:
+       ```jsx
+       <NavLink 
          to="/users" 
          style={({ isActive }) => ({
-            color: isActive ? 'red' : 'black'
+           color: isActive ? 'red' : 'black'
          })}
-         >
+       >
          Users
-         </NavLink>
-      ```
-   `const Layout = ({ children }: { children: React.ReactNode })` => React.ReactNode = anything React can render
-   - “children can be anything React is capable of rendering”
+       </NavLink>
+       ```
+   - **Children Prop**: `({ children }: { children: React.ReactNode })`
+     - `React.ReactNode`: A type representing anything React can render (elements, strings, numbers, fragments, etc.).
+     - Allows components to act as wrappers for other content.
 
-11. **CSS**
-    - *flexbox* : turns a container into flex container
-         ```css
-            <div style={{ display: 'flex'}}>
-               <div style={{ width: '200px', borderRight: '1px solid gray' }}>Sidebar</div>
-               <div style={{ padding: '20px', flex: 1 }}>MainContent</div>
-            </div>
-            <!-- Its children become flexible items laid out: [ Sidebar ][ Main Content ] -->
-         ```
-      - Its children become flexible items laid out:
-        - in a row (default)
-        - or column (if specified)
-      - *flex: 1*: "Take all remaining space available". (sidebar is taking fixed 200, so the other maincontent div will adjust in the remaining space)
-        - this only works when the parent has `display="flex"`
-    - 
-
-useEFFECT ?
-useREF ?
+10. ### **CSS in React**
+   - **Flexbox**: Turns a container into a flexible layout.
+     - **Setup**: Must set `display: 'flex'` on the parent container.
+     - **Behavior**: Children become flexible items laid out in a **row** (default) or **column**.
+     - **Example**:
+       ```jsx
+       <div style={{ display: 'flex' }}>
+         <div style={{ width: '200px', borderRight: '1px solid gray' }}>Sidebar</div>
+         <div style={{ padding: '20px', flex: 1 }}>Main Content</div>
+       </div>
+       ```
+     - **flex: 1**: Tells the item to "grow" and take up **all remaining space** available in the container.
