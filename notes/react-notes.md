@@ -159,3 +159,4 @@
        </div>
        ```
      - **flex: 1**: Tells the item to "grow" and take up **all remaining space** available in the container.
+   - *TO RUN TAILWIND*-> after adding the dependencies add `import 'tailwindcss` in index.css file
