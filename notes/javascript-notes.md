@@ -111,7 +111,7 @@
    - **Role:** It monitors the **Call Stack** and coordinates when tasks from the queues move to the stack.
 
       #### **Key Components**
-      1. **Call Stack:** Executes synchronous code (LIFO).
+      1. **Call Stack:** Executes synchronous code (LIFO). (Async FUNCTIONS run on call stack too, but PAUSE at await) -> Everything runs synchronously UNTIL await.
       2. **Web/Node APIs:** Background environments that handle "slow" tasks (e.g., `setTimeout`, `fetch`, DOM events).
       3. **Microtask Queue:** **High-Priority** tasks. Holds `Promises (.then/.catch)` and `async/await`.
       4. **Macrotask Queue:** **Lower-Priority** tasks. Holds `setTimeout`, `setInterval`, and `I/O`.

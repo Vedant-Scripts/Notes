@@ -129,6 +129,8 @@
    -  *Parent Component* owns state + logic, *Child Component* receives via props
 
 9. ### **Navigation & Layout**
+   - Link → navigation button -> it does not create page/ render page 
+   - Route → page mapping -> If URL = /signup → render Signup component
    - **Link**: Acts like an `<a>` tag to navigate between routes without refreshing the page.
    - **NavLink**: A "smarter" version of `Link` that knows if it is currently **active**.
      - **Active Styling**: Useful for navbars to highlight the current page.
@@ -143,6 +145,23 @@
          Users
        </NavLink>
        ```
+   - *Layout → wraps pages (via children)*
+   - *Routes → decides what to show*
+   - *Route → maps URL to component*
+   - *Navigate → redirects* 
+     ```jsx
+         const App = () => {
+            return (
+                  <Layout>
+                     <Routes>
+                     <Route path="/" element={<Navigate to={"/login"} />} />
+                     <Route path="/login" element={<Login />} />
+                     <Route path="/sign-up" element={<Signup />} />
+                     </Routes>
+                  </Layout >
+            )
+         }  
+     ```
    - **Children Prop**: `({ children }: { children: React.ReactNode })`
      - `React.ReactNode`: A type representing anything React can render (elements, strings, numbers, fragments, etc.).
      - Allows components to act as wrappers for other content.
