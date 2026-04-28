@@ -152,6 +152,7 @@
          }
       ```
 ### 🔐 Token Definitions
+
 - **Access Token (Stateless)**
     - **Lifespan:** Short-lived (e.g., 15 min).
     - **Purpose:** API authentication.
