@@ -1,6 +1,6 @@
 *NOTE:* Nest aims to be a platform-agnostic framework. => the core application logic is decoupled from the underlying HTTP server, allowing developers to switch between platforms like `Express` or `Fastify` without changing business code.
 
-**Nest Factory**
+### Nest Factory
 **Decorators**
     - Decorators are fn's -> that can be applied classes, methods and parameters
     - Decorators can take arguments to control behaviour of on what it is applied (classesm methods, parameters)
@@ -10,6 +10,7 @@
 **Controllers**
     - Wihtout the controller app can't handle any incoming requests
     - Controller has methods to handle requests e.g findAll, create
+**Providers**
 
 Questions : 
 1. What are linters and formatter => Eslint and Prettier tbp

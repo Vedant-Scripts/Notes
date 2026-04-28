@@ -125,3 +125,64 @@
       #### **Interview Summary**
       - **Microtasks > Macrotasks:** Promises always resolve before the next `setTimeout` runs.
       - **Blocking:** If the Call Stack is busy with a heavy loop, the Event Loop cannot move tasks from the queues, "freezing" the app.
+  
+9. ### NODE CODE SNIPPETS (IN JS/TS)
+   - Middleware -> Is a fn
+   - Middleware Factory -> It is a FN that returns a fn: (helps in not passing extra params at route layer just the required one, and everything else in middleware factory code)
+      ```ts
+            export const requireRole = (role: Role) => {
+            return (req: Request, res: Response, next: NextFunction) => {
+               const { user } = res.locals;
+               if (user.role !== role) return res.status(403).json({ message: "You dont have access to this resource" });
+               next();
+            };
+         }
+      ```
+# 10. Auth System Notes: JWT + Sessions + Rotation
+   -  ```js
+         Session {
+         id (sessionId)
+         userId
+         refreshTokenHash
+         device
+         expiresAt
+         revokedAt
+         createdAt
+         updatedAt
+         }
+      ```
+### 🔐 Token Definitions
+- **Access Token (Stateless)**
+    - **Lifespan:** Short-lived (e.g., 15 min).
+    - **Purpose:** API authentication.
+    - **Payload:** Contains `userId`, `role`, and `sessionId`.
+    - **Efficiency:** No DB lookup required per request.
+- **Refresh Token (Stateful)**
+    - **Lifespan:** Long-lived.
+    - **Purpose:** Issues new access tokens.
+    - **Security:** Store as `refreshTokenHash` in DB (never raw).
+    - **Role:** Acts as the persistent "key" to a session.
+
+### 🏠 Session Management
+- **Definition:** Represents one unique logged-in device or user instance.
+- **Storage:** Managed in the DB as the ultimate "Source of Truth."
+- **Constraint:** One session entry per login/device.
+
+### 🔁 The Refresh Flow
+1. **Lookup:** Retrieve the session from DB using `sessionId`.
+2. **Verify:** Hash incoming raw token and compare to stored `refreshTokenHash`.
+3. **Rotate:** Issue a brand-new token pair and update the DB with the new hash.
+4. **Detect:** If a previously used (rotated) token is presented, trigger **Reuse Detection**.
+5. **Revoke:** On reuse detection, delete the entire session to block the attacker.
+
+1.  **Lookup:** Retrieve the session from DB using `sessionId`.
+2.  **Verify:** Hash the incoming raw token and compare it to the stored `refreshTokenHash`.
+3.  **Rotate:** Issue a brand-new token pair and update the DB with the new hash.
+4.  **Detect:** If a previously used (rotated) token is presented, trigger **Reuse Detection**.
+5.  **Revoke:** On reuse detection, delete the entire session to block the attacker.
+
+### ✅ Quick Checklist
+- **DO:** Rotate tokens on every single refresh.
+- **DO:** Use short-lived access tokens to limit exposure.
+- **AVOID:** Hitting the DB for every standard API request.
+- **AVOID:** Storing raw refresh tokens or creating a new session entry on every refresh.
