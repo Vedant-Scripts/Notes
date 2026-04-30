@@ -2,15 +2,16 @@
 
 ### Nest Factory
 **Decorators**
-    - Decorators are fn's -> that can be applied classes, methods and parameters
+    - Decorators are fn's -> that can be applied to classes, methods and parameters
     - Decorators can take arguments to control behaviour of on what it is applied (classesm methods, parameters)
 **Modules**
     - Every Nest Js App has a root module, that module can depend on other modules and in turn they depend on others.
     - App module -> Root module
 **Controllers**
-    - Wihtout the controller app can't handle any incoming requests
+    - Without the controller app can't handle any incoming requests
     - Controller has methods to handle requests e.g findAll, create
-**Providers**
+**Services**
+    - Business logic of the modules resides here, e.g database calls and interaction
 
 Questions : 
 1. What are linters and formatter => Eslint and Prettier tbp
