@@ -12,7 +12,7 @@
    5. Main Content
       - This is the actual stuff your page is about.
       - Articles, cards, data, UI components
-   
+
    LAYOUT VISUAL :
    [ Navbar / Header ]
    [ Sidebar ] [ Main Content ]
@@ -22,7 +22,7 @@
    - Vite is a frontend build tool + development server.
    - helps in - starting project, running dev server, bundle code for production, reloads changes super fast.
    - It helps in preparing things.
-   - *vite.config.ts* defines how all that transformation happens
+   - _vite.config.ts_ defines how all that transformation happens
        <!--    Your React + Tailwind code
                      ↓
                Vite reads config
@@ -42,9 +42,10 @@
    - State Management: React automatically re-renders components when their state changes.
 
 4. ### **React Components**
-   *In React we mainly have 2 Components :*
-      1. *Functional Components*: Functional components are simply JavaScript functions. Initially, they were limited in terms of features like state and lifecycle methods. However, with the introduction of Hooks, functional components can now use state, manage side effects, and access other features that were once exclusive to class components.
-      2. *Class Components*: Class components are more complex than functional components. They are able to manage state, handle lifecycle methods, and can also interact with other components. Class components can pass data between each other via props, similar to functional components
+
+   _In React we mainly have 2 Components :_
+   1. _Functional Components_: Functional components are simply JavaScript functions. Initially, they were limited in terms of features like state and lifecycle methods. However, with the introduction of Hooks, functional components can now use state, manage side effects, and access other features that were once exclusive to class components.
+   2. _Class Components_: Class components are more complex than functional components. They are able to manage state, handle lifecycle methods, and can also interact with other components. Class components can pass data between each other via props, similar to functional components
 
 5. ### **React Hooks**
    1. **useState**
@@ -74,19 +75,19 @@
    6. **Rules of Hooks**
       - **Top Level Only**: Don't call Hooks inside loops, conditions, or nested functions.
       - **React Functions Only**: Only call them from Functional Components or Custom Hooks.
-  
+
 6. ### **React Routing**
    1. **BrowserRouter**
-      - BrowserRouter Comp -> React router -> that enables client side routing in react app -> USING Browser's built-in *History API* 
-       - *History Api* is js feature in browser that enables 1. change Url without refreshing 2. keep track of naviagtion.
+      - BrowserRouter Comp -> React router -> that enables client side routing in react app -> USING Browser's built-in _History API_
+      - _History Api_ is js feature in browser that enables 1. change Url without refreshing 2. keep track of naviagtion.
       - enables routing.
       - prevents full page reload.
 
    2. **Hash Router**
       - In Hash router -> browser + react manages the routing and rendering the server does not have to do anything.
       - Hash router is also the part of react router.
-      - *Usefull* => when server can't be configured, so it can work independently ( github pages, static file hosting), Browser router needs cooperation (server).
-      - *limitations* => worse for SEO
+      - _Usefull_ => when server can't be configured, so it can work independently ( github pages, static file hosting), Browser router needs cooperation (server).
+      - _limitations_ => worse for SEO
       ```js
       /*
         const URL = "https://example.com/#/about" 
@@ -95,87 +96,89 @@
         Server only returns Index.html, then browser + react do magic on it.
       */
       ```
-    3. **Memory Router**
-       - A router that does NOT use the browser URL at all.
-       - stores route in memory.
-       - usually works for non-browser environment ( react native, embedded apps etc).
-       - All in app functionalities would happen( coz internally routes is changing in memory thats why), but anything that depends on browser URL/history(api) does not.
+   3. **Memory Router**
+      - A router that does NOT use the browser URL at all.
+      - stores route in memory.
+      - usually works for non-browser environment ( react native, embedded apps etc).
+      - All in app functionalities would happen( coz internally routes is changing in memory thats why), but anything that depends on browser URL/history(api) does not.
 
 7. ### **CSR & SSR**
-   - *CSR* - in csr, server sends the code not UI, browser builds the UI.
-       - Browser downloads and runs JS bundle, 
-       - JS  executes the code. React renders the component in an empty DOM.
+   - _CSR_ - in csr, server sends the code not UI, browser builds the UI.
+     - Browser downloads and runs JS bundle,
+     - JS executes the code. React renders the component in an empty DOM.
 
-   - *SSR* - When req is made, Server runs the react Code, fetches data, builds UI/html. 
-       - Fully rendered html is sent to browser, no waiting for JS to build UI.
-       - In browser, *Hydration happens*: (Mean: React attaching logic to existing HTML)
-                     - Browser downloads the Js bundle (same as CSR)
-                     - React attaches this to html to make it interactive (clicks etc stuff)
-    
-    - CASE 1: IF Frontend is Next and backend is somewhere, then frontend server would do api call to fetch data and build html
-    - CASE 2: IF both frontend and backend are on Next. then ta direct db call or a internal api call
+   - _SSR_ - When req is made, Server runs the react Code, fetches data, builds UI/html.
+     - Fully rendered html is sent to browser, no waiting for JS to build UI.
+     - In browser, _Hydration happens_: (Mean: React attaching logic to existing HTML) - Browser downloads the Js bundle (same as CSR) - React attaches this to html to make it interactive (clicks etc stuff)
+   - CASE 1: IF Frontend is Next and backend is somewhere, then frontend server would do api call to fetch data and build html
+   - CASE 2: IF both frontend and backend are on Next. then ta direct db call or a internal api call
 
 8. ### **Props & State**
    - **Props**: Read-only arguments passed from a parent to a child component.
    - **Shorthand**: In JSX, a prop provided without a value defaults to `true`.
    - **Example**:
+
      ```js
      // These two are identical:
      <UserList title />
-     
+
      <UserList title={true} />
      ```
-   - **State**: Private data managed *within* the component that can change over time.
-   -  *Parent Component* owns state + logic, *Child Component* receives via props
+
+   - **State**: Private data managed _within_ the component that can change over time.
+   - _Parent Component_ owns state + logic, _Child Component_ receives via props
 
 9. ### **Navigation & Layout**
-   - Link → navigation button -> it does not create page/ render page 
+   - Link → navigation button -> it does not create page/ render page
    - Route → page mapping -> If URL = /signup → render Signup component
    - **Link**: Acts like an `<a>` tag to navigate between routes without refreshing the page.
    - **NavLink**: A "smarter" version of `Link` that knows if it is currently **active**.
      - **Active Styling**: Useful for navbars to highlight the current page.
      - **Example**:
        ```jsx
-       <NavLink 
-         to="/users" 
+       <NavLink
+         to="/users"
          style={({ isActive }) => ({
-           color: isActive ? 'red' : 'black'
+           color: isActive ? "red" : "black",
          })}
        >
          Users
        </NavLink>
        ```
-   - *Layout → wraps pages (via children)*
-   - *Routes → decides what to show*
-   - *Route → maps URL to component*
-   - *Navigate → redirects* 
+   - _Layout → wraps pages (via children)_
+   - _Routes → decides what to show_
+   - _Route → maps URL to component_
+   - _Navigate → redirects_
      ```jsx
-         const App = () => {
-            return (
-                  <Layout>
-                     <Routes>
-                     <Route path="/" element={<Navigate to={"/login"} />} />
-                     <Route path="/login" element={<Login />} />
-                     <Route path="/sign-up" element={<Signup />} />
-                     </Routes>
-                  </Layout >
-            )
-         }  
+     const App = () => {
+       return (
+         <Layout>
+           <Routes>
+             <Route path="/" element={<Navigate to={"/login"} />} />
+             <Route path="/login" element={<Login />} />
+             <Route path="/sign-up" element={<Signup />} />
+           </Routes>
+         </Layout>
+       );
+     };
      ```
    - **Children Prop**: `({ children }: { children: React.ReactNode })`
      - `React.ReactNode`: A type representing anything React can render (elements, strings, numbers, fragments, etc.).
      - Allows components to act as wrappers for other content.
 
 10. ### **CSS in React**
-   - **Flexbox**: Turns a container into a flexible layout.
-     - **Setup**: Must set `display: 'flex'` on the parent container.
-     - **Behavior**: Children become flexible items laid out in a **row** (default) or **column**.
-     - **Example**:
-       ```jsx
-       <div style={{ display: 'flex' }}>
-         <div style={{ width: '200px', borderRight: '1px solid gray' }}>Sidebar</div>
-         <div style={{ padding: '20px', flex: 1 }}>Main Content</div>
-       </div>
-       ```
-     - **flex: 1**: Tells the item to "grow" and take up **all remaining space** available in the container.
-   - *TO RUN TAILWIND*-> after adding the dependencies add `import 'tailwindcss` in index.css file
+
+- **Flexbox**: Turns a container into a flexible layout.
+  - **Setup**: Must set `display: 'flex'` on the parent container.
+  - **Behavior**: Children become flexible items laid out in a **row** (default) or **column**.
+  - **Example**:
+    ```jsx
+    <div style={{ display: "flex" }}>
+      <div style={{ width: "200px", borderRight: "1px solid gray" }}>
+        Sidebar
+      </div>
+      <div style={{ padding: "20px", flex: 1 }}>Main Content</div>
+    </div>
+    ```
+  - **flex: 1**: Tells the item to "grow" and take up **all remaining space** available in the container.
+- _TO RUN TAILWIND_-> after adding the dependencies add `import 'tailwindcss` in index.css file
