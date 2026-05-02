@@ -187,3 +187,19 @@
 - **DO:** Use short-lived access tokens to limit exposure.
 - **AVOID:** Hitting the DB for every standard API request.
 - **AVOID:** Storing raw refresh tokens or creating a new session entry on every refresh.
+
+11. # BASIC TERMINOLOGIES :
+
+- _Constructor_ -> A constructor is just a function that runs when you create an object.
+
+```js
+class User {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+const u = new User("Mate");
+```
