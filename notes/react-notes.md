@@ -193,7 +193,24 @@
         };
      ```
 
-10. ### **CSS in React**
+- _useNavigate_ vs _Navigate_ :
+  - useNavigate :
+    Best for navigation triggered by **actions** (e.g., clicking a button or finishing an API call).
+
+    ```javascript
+    const navigate = useNavigate();
+    const handleClick = () => navigate("/home");
+    ```
+
+  - <Navigate />
+      Best for navigation triggered by **state** (e.g., redirecting if a user is not logged in).
+      ```javascript
+      if (!user) return <Navigate to="/login" />;
+      ```
+
+**Summary:** Use the **hook** for functions; use the **component** for rendering redirects.
+
+1.  ### **CSS in React**
 
 - **Flexbox**: Turns a container into a flexible layout.
   - **Setup**: Must set `display: 'flex'` on the parent container.
