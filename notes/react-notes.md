@@ -165,6 +165,33 @@
    - **Children Prop**: `({ children }: { children: React.ReactNode })`
      - `React.ReactNode`: A type representing anything React can render (elements, strings, numbers, fragments, etc.).
      - Allows components to act as wrappers for other content.
+   - **React Router Layout Pattern for passing Props**: React Router → renders matched route inside <Outlet />
+
+     ```jsx
+         <Routes>
+     <Route path="/" element={<Navigate to="/login" />} />
+     <Route path="/login" element={<Login />} />
+     <Route path="/signup" element={<Signup />} />
+
+     <Route element={<Layout />}>
+       <Route path="/dashboard" element={<Dashboard />} />
+       <Route path="/users" element={<Users users={users} />} />
+       <Route path="/add-user" element={<AddUser setUsers={setUsers} />} />
+     </Route>
+     </Routes>
+
+     <!-- Layout side code   OUTLET IS used-->
+     import { Outlet } from "react-router-dom";
+        const Layout = () => {
+        return (
+           <div className="bg-gray-900">
+              <div>
+              <Outlet />
+              </div>
+           </div>
+        );
+        };
+     ```
 
 10. ### **CSS in React**
 
