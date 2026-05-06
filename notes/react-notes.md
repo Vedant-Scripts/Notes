@@ -53,7 +53,7 @@
       - **Syntax**: `const [state, setState] = useState(initialValue);`
       - **Key Fact**: Updating state triggers a **re-render** to reflect changes in the UI.
       - **Note**: Use the functional update `prev => prev + 1` if the new state depends on the old one.
-   2. **useState**
+   2. **useEffect**
       - **Purpose**: Handles side effects (data fetching, subscriptions, manual DOM changes).
       - **Dependency Array**:
         - `[]`: Runs once on **mount** only.
