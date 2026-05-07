@@ -501,3 +501,160 @@ Learn in this order:
 7. Deployment
 
 Once Server vs Client Components click, most of Next.js starts making sense.
+
+---
+
+# Next.js App Router Mental Model
+
+## Routing
+
+In Next.js App Router, folders define routes.
+
+Example:
+
+app/
+login/
+page.tsx
+
+Route:
+`/login`
+
+`page.tsx` is mandatory because Next.js uses convention-based routing.
+
+---
+
+# Layouts
+
+`layout.tsx` acts as a shared wrapper for all routes inside that folder.
+
+Example:
+
+app/
+(auth)/
+layout.tsx
+login/
+page.tsx
+signup/
+page.tsx
+
+When visiting `/login`, Next internally builds:
+
+<RootLayout>
+  <AuthLayout>
+    <LoginPage />
+  </AuthLayout>
+</RootLayout>
+
+The `children` inside layout are automatically replaced with the current route's page.
+
+---
+
+# Route Groups
+
+Folders inside parentheses are route groups.
+
+Example:
+
+(auth)/
+
+Used only for:
+
+- organization
+- shared layouts
+
+They do NOT appear in URL.
+
+So:
+
+(auth)/login/page.tsx
+
+becomes:
+
+`/login`
+
+NOT:
+
+`/auth/login`
+
+---
+
+# Responsibilities
+
+## layout.tsx
+
+Handles:
+
+- shared UI
+- structure
+- wrappers
+- common sections
+
+Example:
+
+- auth background
+- split screen
+- navbar
+- sidebar
+
+---
+
+## page.tsx
+
+Represents actual route.
+
+Should mostly:
+
+- compose components
+- stay thin
+- avoid massive logic/UI dump
+
+Example:
+
+login/page.tsx
+-> renders LoginForm
+
+---
+
+## Components
+
+Actual UI/business pieces.
+
+Example:
+
+components/auth/
+LoginForm.tsx
+SignupForm.tsx
+
+components/ui/
+Button.tsx
+Input.tsx
+
+---
+
+# Mental Hierarchy
+
+layout
+wraps
+page
+
+page
+renders
+feature components
+
+feature components
+use
+reusable UI components
+
+---
+
+# Key Idea
+
+Folder hierarchy defines UI hierarchy.
+
+Next.js automatically connects:
+
+- layouts
+- routes
+- pages
+
+based on file/folder conventions.
