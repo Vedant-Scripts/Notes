@@ -658,3 +658,46 @@ Next.js automatically connects:
 - pages
 
 based on file/folder conventions.
+
+# Figma → Frontend
+
+Usually take:
+
+- font size
+- font weight
+- spacing
+- padding
+- gap
+- colors
+- border radius
+- alignment
+
+Usually ignore:
+
+- raw X/Y positions
+- exact canvas coordinates
+
+Frontend is responsive, not static canvas.
+
+---
+
+# Width & Height
+
+Use explicit sizes when:
+
+- icon/container size matters
+- avatar/card/circle/button dimensions matter
+
+Example:
+
+```tsx
+w-12 h-12
+```
+
+Avoid forcing sizes on:
+
+- paragraphs
+- flowing layouts
+- text containers
+
+---
